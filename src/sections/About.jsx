@@ -5,24 +5,24 @@ const highlights = [
     icon: Code2,
     title: "Clean Code",
     description:
-      "Writing maintainable, scalable code that stands the test of time.",
+      "Writing structured, readable, and maintainable Flutter applications.",
   },
   {
     icon: Rocket,
     title: "Performance",
     description:
-      "Optimizing for speed and delivering lightning-fast user experiences.",
+      "Building responsive UI and efficient data flows for smooth user experiences.",
   },
   {
     icon: User,
     title: "Collaboration",
-    description: "Working closely with teams to bring ideas to life.",
+    description: "Comfortable working with mentors, teams, and product requirements.",
   },
   {
     icon: Lightbulb,
-    title: "Innovation",
+    title: "Continuous Learning",
     description:
-      "Staying ahead with the latest technologies and best practices.",
+      "Actively improving skills through projects, courses, and experimentation.",
   },
 ];
 
@@ -40,37 +40,37 @@ export const About = () => {
             </div>
 
             <h2 className="text-4xl md:text-5xl font-bold leading-tight animate-fade-in animation delay-100 text-secondary-foreground">
-              Building the future,
+              Crafting mobile solutions,
               <span className="font-display italic font-normal text-white">
                 {" "}
-                one component at a time.
+                one feature at a time.
               </span>
             </h2>
             <div className="space-y-4 text-muted-foreground animate-fade-in animation-delay-200 text-justify">
               <p>
-                I'm a passionate software engineer with over 5 years of
-                experience crafting digital products that make a difference. My
-                journey started with a curiosity for how things work on the web,
-                and it has evolved into a deep expertise in modern frontend
-                technologies.
+                I am a Mobile App Developer specializing in Flutter (Dart), with
+                experience developing and publishing real-world applications for
+                Android. My work emphasizes clean architecture, maintainable
+                code, and predictable state management using BLoC. I enjoy
+                translating product requirements into stable and user-friendly
+                mobile experiences.
               </p>
               <p>
-                I specialize in React, Next.js, and TypeScript, building
-                everything from sleek landing pages to complex enterprise
-                applications. My approach combines technical excellence with a
-                keen eye for design and user experience.
+                In addition to mobile development, I have backend experience
+                using Node.js (Hapi.js), working with REST APIs, authentication,
+                relational databases, and caching systems to support modern
+                applications.
               </p>
               <p>
-                When I'm not coding, you'll find me exploring new technologies,
-                contributing to open-source projects, or sharing knowledge with
-                the developer community.
+                I am continuously improving my skills through hands-on projects
+                and structured learning, with a long-term goal of growing into a
+                strong full-stack engineer.
               </p>
             </div>
             <div className="glass rounded-2xl p-6 glow-border animate-fade-in animation-delay-300 text-justify">
               <p className="text-lg font-medium italic text-foreground">
-                "My mission is to create digital experiences that are not just
-                functional, but truly delightful — products that users love to
-                use and developers love to maintain."
+                "My goal is to build applications that are reliable, easy to
+                maintain, and genuinely useful for users — not just demos."
               </p>
             </div>
           </div>

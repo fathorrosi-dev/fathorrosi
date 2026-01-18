@@ -1,38 +1,29 @@
 const experiences = [
   {
     period: "2022 — Present",
-    role: "Senior Frontend Engineer",
-    company: "Tech Innovators Inc.",
+    role: "Personal & Independent Projects",
+    company: "Self Employed",
     description:
-      "Leading frontend architecture for a suite of fintech products. Implemented micro-frontend architecture, reduced bundle size by 40%, and mentored a team of 5 developers.",
-    technologies: ["React", "TypeScript", "Next.js", "GraphQL"],
+      "Built and published a Flutter mobile application on Google Play. Developed backend REST APIs using Node.js for learning and experimentation. Continuously explored clean architecture, state management, and API integration",
+    technologies: ["Flutter", "Node.js", "PostgreSQL", "Firebase"],
     current: true,
   },
   {
-    period: "2020 — 2022",
-    role: "Frontend Engineer",
-    company: "Digital Solutions Co.",
+    period: "Feb 2022 – Jul 2022",
+    role: "App Developer Intern",
+    company: "Vocasia — West Jakarta",
     description:
-      "Built and maintained multiple React applications for enterprise clients. Introduced automated testing practices that improved code coverage to 85%.",
-    technologies: ["React", "Redux", "Jest", "Cypress"],
+      "Developed and maintained mobile application features using Flutter and Dart. Collaborated with cross-functional teams to integrate APIs and application logic. Applied mobile development best practices throughout the software development lifecycle.",
+    technologies: ["Flutter", "Dart", "REST API"],
     current: false,
   },
   {
-    period: "2019 — 2020",
-    role: "Junior Developer",
-    company: "StartUp Labs",
+    period: "Aug 2021 – Jan 2022",
+    role: "Independent Study (MBKM) — Android & Multi-Platform Developer",
+    company: "Dicoding Academy (Online)",
     description:
-      "Contributed to the development of a SaaS platform from MVP to production. Collaborated with designers to implement pixel-perfect UI components.",
-    technologies: ["React", "Node.js", "MongoDB", "AWS"],
-    current: false,
-  },
-  {
-    period: "2018 — 2019",
-    role: "Freelance Developer",
-    company: "Self-Employed",
-    description:
-      "Delivered custom web solutions for small businesses and startups. Built 15+ websites and applications, handling everything from design to deployment.",
-    technologies: ["JavaScript", "PHP", "WordPress", "MySQL"],
+      "Completed an industry-aligned program focused on Android and multi-platform development. Built multiple applications through guided modules and a team-based final project. Strengthened problem-solving, self-learning, and collaboration skills.",
+    technologies: ["Flutter", "Dart", "Android", "Git"],
     current: false,
   },
 ];
@@ -70,8 +61,8 @@ export const Experience = () => {
             className="text-muted-foreground
            animate-fade-in animation-delay-200"
           >
-            A timeline of my professional growth, from curious beginner to
-            senior engineer leading teams and building products at scale.
+            A timeline of my professional and learning journey, focused on
+            building real applications and practical skills.
           </p>
         </div>
 

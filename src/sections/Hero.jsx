@@ -68,25 +68,23 @@ export const Hero = () => {
             <div className="animate-fade-in">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                Full Stack Developer | Flutter and Node.js
+                Mobile App Developer (Flutter) | Backend Experience (Node.js)
               </span>
             </div>
 
             {/* Headline */}
             <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in animation-delay-100">
-                Crafting <span className="text-primary glow-text">digital</span>
+                Building Reliable
                 <br />
-                experience with
+                  <span className="text-primary glow-text">Mobile Apps</span> with
                 <br />
                 <span className="font-display italic font-normal text-white">
-                  precision.
+                  Clean Impact.
                 </span>
               </h1>
-              <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
-                Hi, I'm Fathorrosi — a software engineer specializing in
-                React, Next.js, and TypeScript. I build scalable, performant web
-                applications that users love.
+              <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200 text-justify">
+                Hi, I’m Fathorrosi — a Flutter Mobile Developer with hands-on experience building and publishing production-ready applications on Google Play. I focus on clean code, scalable architecture, and seamless API integration. I also have backend experience with Node.js to support full-stack workflows.
               </p>
             </div>
 
@@ -100,7 +98,7 @@ export const Hero = () => {
               >
                 Contact Me <ArrowRight className="w-5 h-5" />
               </Button>
-              <AnimatedBorderButton>
+              <AnimatedBorderButton href="https://drive.google.com/file/d/1nkMHGbWaHGK5aYXSLJ7FplwCqpwzUO5E/view?usp=sharing">
                 <Download className="w-5 h-5" />
                 Download CV
               </AnimatedBorderButton>
@@ -110,8 +108,8 @@ export const Hero = () => {
             <div className="flex items-center gap-4 animate-fade-in animation-delay-400">
               <span className="text-sm text-muted-foreground">Follow me: </span>
               {[
-                { icon: Github, href: "#" },
-                { icon: Linkedin, href: "#" },
+                { icon: Github, href: "https://github.com/fathorrosi-dev" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/fathorrosi-fathor-b95b213a5/" },
               ].map((social, idx) => (
                 <a
                   key={idx}
