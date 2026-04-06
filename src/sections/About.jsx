@@ -64,7 +64,7 @@ export const About = () => {
               <p>
                 I am continuously improving my skills through hands-on projects
                 and structured learning, with a long-term goal of growing into a
-                strong full-stack engineer.
+                strong Flutter engineer.
               </p>
             </div>
             <div className="glass rounded-2xl p-6 glow-border animate-fade-in animation-delay-300 text-justify">

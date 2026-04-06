@@ -68,7 +68,7 @@ export const Hero = () => {
             <div className="animate-fade-in">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                Mobile App Developer (Flutter) | Backend Experience (Node.js)
+                Flutter Developer | Flutter Specialist
               </span>
             </div>
 
@@ -84,7 +84,7 @@ export const Hero = () => {
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200 text-justify">
-                Hi, I’m Fathorrosi — a Flutter Mobile Developer with hands-on experience building and publishing production-ready applications on Google Play. I focus on clean code, scalable architecture, and seamless API integration. I also have backend experience with Node.js to support full-stack workflows.
+                Hi, I’m Fathorrosi — a Flutter Mobile Developer with hands-on experience building and publishing production-ready applications on Google Play. I focus on clean code, scalable architecture, and seamless API integration. I care about code that is maintainable, testable, and ready to ship.
               </p>
             </div>
 
@@ -98,7 +98,7 @@ export const Hero = () => {
               >
                 Contact Me <ArrowRight className="w-5 h-5" />
               </Button>
-              <AnimatedBorderButton href="https://drive.google.com/file/d/1nkMHGbWaHGK5aYXSLJ7FplwCqpwzUO5E/view?usp=sharing">
+              <AnimatedBorderButton href="https://drive.google.com/file/d/16PCh_1XGHTR0BN6ROHdLMPacyi4cO7PY/view?usp=sharing">
                 <Download className="w-5 h-5" />
                 Download CV
               </AnimatedBorderButton>
