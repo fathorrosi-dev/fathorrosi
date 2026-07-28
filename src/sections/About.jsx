@@ -1,9 +1,11 @@
-import { Code2, Lightbulb, Rocket, User } from "lucide-react";
+import { Code2, Lightbulb, Rocket, Users } from "lucide-react";
+import { SectionLabel } from "@/components/SectionLabel";
+import { Reveal } from "@/components/Reveal";
 
 const highlights = [
   {
     icon: Code2,
-    title: "Clean Code",
+    title: "Clean code",
     description:
       "Writing structured, readable, and maintainable Flutter applications.",
   },
@@ -11,89 +13,121 @@ const highlights = [
     icon: Rocket,
     title: "Performance",
     description:
-      "Building responsive UI and efficient data flows for smooth user experiences.",
+      "Building responsive UI and efficient data flows for smooth experiences.",
   },
   {
-    icon: User,
+    icon: Users,
     title: "Collaboration",
-    description: "Comfortable working with mentors, teams, and product requirements.",
+    description:
+      "Comfortable working with mentors, teams, and product requirements.",
   },
   {
     icon: Lightbulb,
-    title: "Continuous Learning",
+    title: "Continuous learning",
     description:
-      "Actively improving skills through projects, courses, and experimentation.",
+      "Actively improving through projects, courses, and experimentation.",
   },
+];
+
+const stack = [
+  "Dart",
+  "Flutter",
+  "Kotlin",
+  "Android",
+  "JavaScript",
+  "Node.js",
+  "Firebase",
+  "Git",
+  "GitHub",
 ];
 
 export const About = () => {
   return (
-    <section id="about" className="py-32 relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column */}
-          <div className="space-y-8">
-            <div className="animate-fade-in">
-              <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase">
-                About me
-              </span>
-            </div>
+    <section id="about" className="py-24 md:py-32">
+      <div className="container mx-auto px-6">
+        <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
+          {/* Left column */}
+          <div>
+            <Reveal>
+              <SectionLabel>about</SectionLabel>
+            </Reveal>
 
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight animate-fade-in animation delay-100 text-secondary-foreground">
-              Crafting mobile solutions,
-              <span className="font-display italic font-normal text-white">
-                {" "}
-                one feature at a time.
-              </span>
-            </h2>
-            <div className="space-y-4 text-muted-foreground animate-fade-in animation-delay-200 text-justify">
-              <p>
-                I am a Mobile App Developer specializing in Flutter (Dart), with
-                experience developing and publishing real-world applications for
-                Android. My work emphasizes clean architecture, maintainable
-                code, and predictable state management using BLoC. I enjoy
-                translating product requirements into stable and user-friendly
-                mobile experiences.
-              </p>
-              <p>
-                In addition to mobile development, I have backend experience
-                using Node.js (Hapi.js), working with REST APIs, authentication,
-                relational databases, and caching systems to support modern
-                applications.
-              </p>
-              <p>
-                I am continuously improving my skills through hands-on projects
-                and structured learning, with a long-term goal of growing into a
-                strong Flutter engineer.
-              </p>
-            </div>
-            <div className="glass rounded-2xl p-6 glow-border animate-fade-in animation-delay-300 text-justify">
-              <p className="text-lg font-medium italic text-foreground">
-                "My goal is to build applications that are reliable, easy to
-                maintain, and genuinely useful for users — not just demos."
-              </p>
-            </div>
-          </div>
+            <Reveal delay={80}>
+              <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                Crafting mobile solutions, one feature at a time.
+              </h2>
+            </Reveal>
 
-          {/* Right Column */}
-          <div className="grid sm:grid-cols-2 gap-6">
-            {highlights.map((item, idx) => (
-              <div
-                key={idx}
-                className="glass p-6 rounded-2xl animate-fade-in"
-                style={{
-                  animationDelay: `${(idx + 1) * 100}ms`,
-                }}
-              >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 hover:bg-primary/20">
-                  <item.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">
-                  {item.description}
+            <Reveal delay={140}>
+              <div className="mt-6 space-y-4 leading-relaxed text-muted-foreground">
+                <p>
+                  I'm a mobile app developer specializing in Flutter and Dart,
+                  with hands-on experience shipping real applications to
+                  Android. My work leans on clean architecture, maintainable
+                  code, and predictable state management with BLoC — turning
+                  product requirements into mobile experiences people can
+                  rely on.
+                </p>
+                <p>
+                  Alongside mobile work, I build backend services with
+                  Node.js and Hapi.js: REST APIs, authentication, relational
+                  databases, and caching layers that support the apps in
+                  front of them.
+                </p>
+                <p>
+                  I keep improving through hands-on projects and structured
+                  learning, working toward becoming a stronger Flutter
+                  engineer one release at a time.
                 </p>
               </div>
-            ))}
+            </Reveal>
+
+            <Reveal delay={200}>
+              <blockquote className="mt-8 border-l-2 border-primary pl-5 text-lg font-medium italic text-foreground">
+                "My goal is to build applications that are reliable, easy to
+                maintain, and genuinely useful — not just demos."
+              </blockquote>
+            </Reveal>
+          </div>
+
+          {/* Right column */}
+          <div>
+            <Reveal>
+              <div className="grid gap-6 sm:grid-cols-2">
+                {highlights.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-xl border border-border bg-surface p-6"
+                  >
+                    <item.icon className="h-5 w-5 text-primary" />
+                    <h3 className="mt-4 text-base font-semibold text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1.5 text-sm text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <div className="mt-6 rounded-xl border border-border bg-surface p-6">
+                <h3 className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+                  Tools &amp; technologies
+                </h3>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {stack.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-md border border-border bg-background px-2.5 py-1 font-mono text-xs text-muted-foreground"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </div>

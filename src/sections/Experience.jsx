@@ -1,10 +1,13 @@
+import { SectionLabel } from "@/components/SectionLabel";
+import { Reveal } from "@/components/Reveal";
+
 const experiences = [
   {
     period: "2022 — Present",
     role: "Personal & Independent Projects",
     company: "Self Employed",
     description:
-      "Built and published a Flutter mobile application on Google Play. Developed backend REST APIs using Node.js for learning and experimentation. Continuously explored clean architecture, state management, and API integration",
+      "Built and published a Flutter mobile application on Google Play. Developed backend REST APIs using Node.js for learning and experimentation. Continuously explored clean architecture, state management, and API integration.",
     technologies: ["Flutter", "Node.js", "PostgreSQL", "Firebase"],
     current: true,
   },
@@ -30,99 +33,61 @@ const experiences = [
 
 export const Experience = () => {
   return (
-    <section id="experience" className="py-32 relative overflow-hidden">
-      <div
-        className="absolute top-1/2 left-1/4 w-96
-       h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2"
-      />
-
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <span
-            className="text-secondary-foreground text-sm
-           font-medium tracking-wider uppercase animate-fade-in"
-          >
-            Career Journey
-          </span>
-          <h2
-            className="text-4xl md:text-5xl font-bold
-           mt-4 mb-6 animate-fade-in animation-delay-100
-            text-secondary-foreground"
-          >
-            Experience that{" "}
-            <span className="font-display italic font-normal text-white">
-              {" "}
-              speaks volumes.
-            </span>
+    <section id="experience" className="py-24 md:py-32">
+      <div className="container mx-auto px-6">
+        <Reveal>
+          <SectionLabel>experience</SectionLabel>
+        </Reveal>
+        <Reveal delay={80}>
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            Where the work happened.
           </h2>
-
-          <p
-            className="text-muted-foreground
-           animate-fade-in animation-delay-200"
-          >
+        </Reveal>
+        <Reveal delay={140}>
+          <p className="mt-4 max-w-2xl text-muted-foreground">
             A timeline of my professional and learning journey, focused on
             building real applications and practical skills.
           </p>
-        </div>
+        </Reveal>
 
-        {/* Timeline */}
-        <div className="relative">
-          <div className="timeline-glow absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-primary/70 via-primary/30 to-transparent md:-translate-x-1/2 shadow-[0_0_25px_rgba(32,178,166,0.8)]" />
-
-          {/* Experience Items */}
-          <div className="space-y-12">
-            {experiences.map((exp, idx) => (
-              <div
-                key={idx}
-                className="relative grid md:grid-cols-2 gap-8 animate-fade-in"
-                style={{ animationDelay: `${(idx + 1) * 150}ms` }}
-              >
-                {/* Timeline Dot */}
-                <div className="absolute left-0 md:left-1/2 top-0 w-3 h-3 bg-primary rounded-full -translate-x-1/2 ring-4 ring-background z-10">
+        <div className="mt-14 divide-y divide-border border-t border-border">
+          {experiences.map((exp, idx) => (
+            <Reveal key={exp.role} delay={idx * 60}>
+              <div className="grid gap-3 py-8 md:grid-cols-[10rem_1fr] md:gap-8">
+                <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground md:pt-1">
                   {exp.current && (
-                    <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
+                    <span className="relative flex h-2 w-2 shrink-0">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                    </span>
                   )}
+                  {exp.period}
                 </div>
 
-                {/* Content */}
-                <div
-                  className={`pl-8 md:pl-0 ${
-                    idx % 2 === 0
-                      ? "md:pr-16 md:text-right"
-                      : "md:col-start-2 md:pl-16"
-                  }`}
-                >
-                  <div
-                    className={`glass p-6 rounded-2xl border border-primary/30 hover:border-primary/50 transition-all duration-500`}
-                  >
-                    <span className="text-sm text-primary font-medium">
-                      {exp.period}
-                    </span>
-                    <h3 className="text-xl font-semibold mt-2">{exp.role}</h3>
-                    <p className="text-muted-foreground">{exp.company}</p>
-                    <p className="text-sm text-muted-foreground mt-4">
-                      {exp.description}
-                    </p>
-                    <div
-                      className={`flex flex-wrap gap-2 mt-4 ${
-                        idx % 2 === 0 ? "md:justify-end" : ""
-                      }`}
-                    >
-                      {exp.technologies.map((tech, techIdx) => (
-                        <span
-                          key={techIdx}
-                          className="px-3 py-1 bg-surface text-xs rounded-full text-muted-foreground"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {exp.role}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {exp.company}
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {exp.description}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {exp.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-md border border-border bg-secondary px-2.5 py-1 font-mono text-xs text-muted-foreground"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

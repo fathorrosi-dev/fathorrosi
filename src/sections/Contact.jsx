@@ -1,14 +1,16 @@
 import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  CheckCircle,
   AlertCircle,
+  CheckCircle,
+  Mail,
+  MapPin,
+  Phone,
+  Send,
 } from "lucide-react";
-import { Button } from "@/components/Button";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { Button } from "@/components/Button";
+import { SectionLabel } from "@/components/SectionLabel";
+import { Reveal } from "@/components/Reveal";
 
 const contactInfo = [
   {
@@ -27,7 +29,7 @@ const contactInfo = [
     icon: MapPin,
     label: "Location",
     value: "Probolinggo, East Java, Indonesia",
-    href: "#",
+    href: null,
   },
 ];
 
@@ -39,15 +41,15 @@ export const Contact = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({
-    type: null, // 'success' or 'error'
+    type: null,
     message: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setIsLoading(true);
     setSubmitStatus({ type: null, message: "" });
+
     try {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -59,20 +61,11 @@ export const Contact = () => {
         );
       }
 
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        },
-        publicKey
-      );
+      await emailjs.send(serviceId, templateId, formData, publicKey);
 
       setSubmitStatus({
         type: "success",
-        message: "Message sent successfully! I'll get back to you soon.",
+        message: "Message sent — I'll get back to you soon.",
       });
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
@@ -80,47 +73,41 @@ export const Contact = () => {
       setSubmitStatus({
         type: "error",
         message:
-          error.text || "Failed to send message. Please try again later.",
+          error.text || "Couldn't send your message. Please try again later.",
       });
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
-    <section
-      id="contact"
-      className="py-32 relative overflow-hidden scroll-mt-32"
-    >
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-highlight/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">
-            Get In Touch
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
-            Let's build{" "}
-            <span className="font-display italic font-normal text-white">
-              something great.
-            </span>
+    <section id="contact" className="scroll-mt-24 py-24 md:py-32">
+      <div className="container mx-auto px-6">
+        <Reveal>
+          <SectionLabel>contact</SectionLabel>
+        </Reveal>
+        <Reveal delay={80}>
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            Let's build something worth shipping.
           </h2>
-          <p className="text-muted-foreground animate-fade-in animation-delay-200">
-            Have a project in mind? I'd love to hear about it. Send me a message
-            and let's discuss how we can work together.
+        </Reveal>
+        <Reveal delay={140}>
+          <p className="mt-4 max-w-2xl text-muted-foreground">
+            Have a project in mind? Tell me about it and I'll get back to you
+            within a day or two.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          <div className="glass p-8 rounded-3xl border border-primary/30 animate-fade-in animation-delay-300">
-            <form className="space-y-6" onSubmit={handleSubmit}>
+        <div className="mt-14 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+          <Reveal delay={200}>
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-5 rounded-2xl border border-border bg-surface p-6 sm:p-8"
+            >
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium mb-2"
+                  className="mb-2 block text-sm font-medium text-foreground"
                 >
                   Name
                 </label>
@@ -128,131 +115,154 @@ export const Contact = () => {
                   id="name"
                   type="text"
                   required
-                  placeholder="Your name..."
+                  placeholder="Your name"
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="email"
-                  type="email"
-                  className="block text-sm font-medium mb-2"
+                  className="mb-2 block text-sm font-medium text-foreground"
                 >
                   Email
                 </label>
                 <input
-                  required
+                  id="email"
                   type="email"
-                  placeholder="your@email.com"
+                  required
+                  placeholder="you@email.com"
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium mb-2"
+                  className="mb-2 block text-sm font-medium text-foreground"
                 >
                   Message
                 </label>
                 <textarea
+                  id="message"
                   rows={5}
                   required
+                  placeholder="Tell me about your project or opportunity"
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
-                  placeholder="Tell me about your project or opportunity…"
-                  className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none"
+                  className="w-full resize-none rounded-lg border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary"
                 />
               </div>
 
               <Button
-                className="w-full"
                 type="submit"
                 size="lg"
+                className="w-full"
                 disabled={isLoading}
               >
                 {isLoading ? (
-                  <>Sending...</>
+                  "Sending..."
                 ) : (
                   <>
-                    Send Message
-                    <Send className="w-5 h-5" />
+                    Send message
+                    <Send className="h-4 w-4" />
                   </>
                 )}
               </Button>
 
               {submitStatus.type && (
                 <div
-                  className={`flex items-center gap-3
-                     p-4 rounded-xl ${
-                       submitStatus.type === "success"
-                         ? "bg-green-500/10 border border-green-500/20 text-green-400"
-                         : "bg-red-500/10 border border-red-500/20 text-red-400"
-                     }`}
+                  role="status"
+                  className={`flex items-center gap-3 rounded-lg p-4 text-sm ${
+                    submitStatus.type === "success"
+                      ? "border border-primary/30 bg-primary/10 text-primary"
+                      : "border border-red-500/30 bg-red-500/10 text-red-500"
+                  }`}
                 >
                   {submitStatus.type === "success" ? (
-                    <CheckCircle className="w-5 h-5 shrink-0" />
+                    <CheckCircle className="h-5 w-5 shrink-0" />
                   ) : (
-                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    <AlertCircle className="h-5 w-5 shrink-0" />
                   )}
-                  <p className="text-sm">{submitStatus.message}</p>
+                  <p>{submitStatus.message}</p>
                 </div>
               )}
             </form>
-          </div>
+          </Reveal>
 
-          {/* Contact Info */}
-          <div className="space-y-6 animate-fade-in animation-delay-400">
-            <div className="glass rounded-3xl p-8">
-              <h3 className="text-xl font-semibold mb-6">
-                Contact Information
-              </h3>
-              <div className="space-y-4">
-                {contactInfo.map((item, i) => (
-                  <a
-                    key={i}
-                    href={item.href}
-                    className="flex items-center gap-4 p-4 rounded-xl hover:bg-surface transition-colors group"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <item.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">
-                        {item.label}
+          <Reveal delay={260}>
+            <div className="space-y-6">
+              <div className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
+                <h3 className="text-base font-semibold text-foreground">
+                  Contact information
+                </h3>
+                <div className="mt-5 space-y-1">
+                  {contactInfo.map((item) => {
+                    const content = (
+                      <>
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-background">
+                          <item.icon className="h-4 w-4 text-primary" />
+                        </div>
+                        <div>
+                          <div className="text-xs text-muted-foreground">
+                            {item.label}
+                          </div>
+                          <div className="text-sm font-medium text-foreground">
+                            {item.value}
+                          </div>
+                        </div>
+                      </>
+                    );
+
+                    return item.href ? (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        className="flex items-center gap-4 rounded-lg p-3 transition-colors hover:bg-background"
+                      >
+                        {content}
+                      </a>
+                    ) : (
+                      <div
+                        key={item.label}
+                        className="flex items-center gap-4 rounded-lg p-3"
+                      >
+                        {content}
                       </div>
-                      <div className="font-medium">{item.value}</div>
-                    </div>
-                  </a>
-                ))}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
 
-            {/* Availability Card */}
-            <div className="glass rounded-3xl p-8 border border-primary/30">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                <span className="font-medium">Currently Available</span>
+              <div className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
+                <div className="flex items-center gap-2.5">
+                  <span className="relative flex h-2.5 w-2.5 shrink-0">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
+                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
+                  </span>
+                  <span className="font-medium text-foreground">
+                    Currently available
+                  </span>
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  Open to Flutter Developer and Mobile App Developer
+                  opportunities. If you're looking for someone committed to
+                  learning, building, and improving continuously, feel free
+                  to reach out.
+                </p>
               </div>
-              <p className="text-muted-foreground text-sm">
-                I’m open to Flutter Developer and Mobile App Developer
-                opportunities. If you’re looking for someone who is committed to
-                learning, building, and improving continuously, feel free to
-                reach out.
-              </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>
