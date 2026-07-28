@@ -1,8 +1,12 @@
-import { Github, Linkedin, Heart } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/fathorrosi-dev", label: "GitHub" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/fathorrosi-fathor-b95b213a5/", label: "LinkedIn" },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/fathorrosi-fathor-b95b213a5/",
+    label: "LinkedIn",
+  },
 ];
 
 const footerLinks = [
@@ -16,42 +20,42 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-12 border-t border-border">
+    <footer className="border-t border-border py-12">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Logo & Copyright */}
+        <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
           <div className="text-center md:text-left">
-            <a href="#" className="text-xl font-bold tracking-tight">
-              F<span className="text-primary">.</span>
+            <a
+              href="#"
+              className="font-display text-lg font-semibold tracking-tight text-foreground"
+            >
+              fathorrosi<span className="text-primary">.dev</span>
             </a>
-            <p className="text-sm text-muted-foreground mt-2">
+            <p className="mt-2 text-sm text-muted-foreground">
               © {currentYear} Fathorrosi. All rights reserved.
             </p>
           </div>
 
-          {/* Links */}
           <nav className="flex flex-wrap justify-center gap-6">
             {footerLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          {/* Social Links */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
                 href={social.href}
                 aria-label={social.label}
-                className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
               >
-                <social.icon className="w-5 h-5" />
+                <social.icon className="h-4 w-4" />
               </a>
             ))}
           </div>
