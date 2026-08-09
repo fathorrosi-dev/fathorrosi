@@ -1,27 +1,26 @@
+import { Route, Routes } from "react-router-dom";
 import { Navbar } from "@/layout/Navbar";
-import { About } from "@/sections/About";
-import { Contact } from "@/sections/Contact";
-import { Experience } from "@/sections/Experience";
-import { Hero } from "@/sections/Hero"
-import { Projects } from '@/sections/Projects';
 import { Footer } from "@/layout/Footer";
-// import { Testimonials } from "@/sections/Testimonials";
+import { ScrollToHash } from "@/components/ScrollToHash";
+import { Home } from "@/pages/Home";
+import { Process } from "@/pages/Process";
+import { Faq } from "@/pages/Faq";
 
 function App() {
   return (
     <div className="min-h-screen overflow-x-hidden">
+      <ScrollToHash />
       <Navbar />
       <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Experience />
-        {/* <Testimonials /> */}
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/process" element={<Process />} />
+          <Route path="/faq" element={<Faq />} />
+        </Routes>
       </main>
       <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
