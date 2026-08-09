@@ -11,29 +11,63 @@ import emailjs from "@emailjs/browser";
 import { Button } from "@/components/Button";
 import { SectionLabel } from "@/components/SectionLabel";
 import { Reveal } from "@/components/Reveal";
+import { useLanguage } from "@/context/LanguageContext";
 
-const contactInfo = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "fathorrosi-dev@proton.me",
-    href: "mailto:fathorrosi-dev@proton.me",
+const copy = {
+  en: {
+    headline: "Let's build something worth shipping.",
+    subtitle:
+      "Have a project in mind? Tell me about it and I'll get back to you within a day or two.",
+    nameLabel: "Name",
+    namePlaceholder: "Your name",
+    emailLabel: "Email",
+    emailPlaceholder: "you@email.com",
+    messageLabel: "Message",
+    messagePlaceholder: "Tell me about your project or opportunity",
+    sending: "Sending...",
+    send: "Send message",
+    successMessage: "Message sent, I'll get back to you soon.",
+    errorFallback: "Couldn't send your message. Please try again later.",
+    contactInfoTitle: "Contact information",
+    contactInfo: [
+      { icon: Mail, label: "Email", value: "fathorrosi-dev@proton.me", href: "mailto:fathorrosi-dev@proton.me" },
+      { icon: Phone, label: "Phone", value: "+62 (895) 8072-97777", href: "tel:+62895807297777" },
+      { icon: MapPin, label: "Location", value: "Probolinggo, East Java, Indonesia", href: null },
+    ],
+    available: "Currently available",
+    availableBlurb:
+      "Open to Flutter Developer and Mobile App Developer opportunities. If you're looking for someone committed to learning, building, and improving continuously, feel free to reach out.",
   },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+62 (895) 8072-97777",
-    href: "tel:+62895807297777",
+  id: {
+    headline: "Ayo bangun sesuatu yang layak dirilis.",
+    subtitle:
+      "Punya proyek yang ingin dikerjakan? Ceritakan ke saya, saya akan balas dalam satu sampai dua hari.",
+    nameLabel: "Nama",
+    namePlaceholder: "Nama Anda",
+    emailLabel: "Email",
+    emailPlaceholder: "anda@email.com",
+    messageLabel: "Pesan",
+    messagePlaceholder: "Ceritakan tentang proyek atau peluang Anda",
+    sending: "Mengirim...",
+    send: "Kirim pesan",
+    successMessage: "Pesan terkirim, saya akan segera membalas.",
+    errorFallback: "Pesan gagal terkirim. Silakan coba lagi nanti.",
+    contactInfoTitle: "Informasi kontak",
+    contactInfo: [
+      { icon: Mail, label: "Email", value: "fathorrosi-dev@proton.me", href: "mailto:fathorrosi-dev@proton.me" },
+      { icon: Phone, label: "Telepon", value: "+62 (895) 8072-97777", href: "tel:+62895807297777" },
+      { icon: MapPin, label: "Lokasi", value: "Probolinggo, Jawa Timur, Indonesia", href: null },
+    ],
+    available: "Saat ini tersedia",
+    availableBlurb:
+      "Terbuka untuk peluang sebagai Flutter Developer maupun Mobile App Developer. Kalau Anda mencari seseorang yang berkomitmen untuk terus belajar, membangun, dan berkembang, jangan ragu untuk menghubungi saya.",
   },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: "Probolinggo, East Java, Indonesia",
-    href: null,
-  },
-];
+};
 
 export const Contact = () => {
+  const { language } = useLanguage();
+  const t = copy[language];
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -65,15 +99,14 @@ export const Contact = () => {
 
       setSubmitStatus({
         type: "success",
-        message: "Message sent — I'll get back to you soon.",
+        message: t.successMessage,
       });
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("EmailJS error:", error);
       setSubmitStatus({
         type: "error",
-        message:
-          error.text || "Couldn't send your message. Please try again later.",
+        message: error.text || t.errorFallback,
       });
     } finally {
       setIsLoading(false);
@@ -88,13 +121,12 @@ export const Contact = () => {
         </Reveal>
         <Reveal delay={80}>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Let's build something worth shipping.
+            {t.headline}
           </h2>
         </Reveal>
         <Reveal delay={140}>
           <p className="mt-4 max-w-2xl text-muted-foreground">
-            Have a project in mind? Tell me about it and I'll get back to you
-            within a day or two.
+            {t.subtitle}
           </p>
         </Reveal>
 
@@ -109,13 +141,13 @@ export const Contact = () => {
                   htmlFor="name"
                   className="mb-2 block text-sm font-medium text-foreground"
                 >
-                  Name
+                  {t.nameLabel}
                 </label>
                 <input
                   id="name"
                   type="text"
                   required
-                  placeholder="Your name"
+                  placeholder={t.namePlaceholder}
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -129,13 +161,13 @@ export const Contact = () => {
                   htmlFor="email"
                   className="mb-2 block text-sm font-medium text-foreground"
                 >
-                  Email
+                  {t.emailLabel}
                 </label>
                 <input
                   id="email"
                   type="email"
                   required
-                  placeholder="you@email.com"
+                  placeholder={t.emailPlaceholder}
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -149,13 +181,13 @@ export const Contact = () => {
                   htmlFor="message"
                   className="mb-2 block text-sm font-medium text-foreground"
                 >
-                  Message
+                  {t.messageLabel}
                 </label>
                 <textarea
                   id="message"
                   rows={5}
                   required
-                  placeholder="Tell me about your project or opportunity"
+                  placeholder={t.messagePlaceholder}
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
@@ -171,10 +203,10 @@ export const Contact = () => {
                 disabled={isLoading}
               >
                 {isLoading ? (
-                  "Sending..."
+                  t.sending
                 ) : (
                   <>
-                    Send message
+                    {t.send}
                     <Send className="h-4 w-4" />
                   </>
                 )}
@@ -204,10 +236,10 @@ export const Contact = () => {
             <div className="space-y-6">
               <div className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
                 <h3 className="text-base font-semibold text-foreground">
-                  Contact information
+                  {t.contactInfoTitle}
                 </h3>
                 <div className="mt-5 space-y-1">
-                  {contactInfo.map((item) => {
+                  {t.contactInfo.map((item) => {
                     const content = (
                       <>
                         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-background">
@@ -251,14 +283,11 @@ export const Contact = () => {
                     <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
                   </span>
                   <span className="font-medium text-foreground">
-                    Currently available
+                    {t.available}
                   </span>
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  Open to Flutter Developer and Mobile App Developer
-                  opportunities. If you're looking for someone committed to
-                  learning, building, and improving continuously, feel free
-                  to reach out.
+                  {t.availableBlurb}
                 </p>
               </div>
             </div>

@@ -3,24 +3,18 @@ import { ArrowUpRight, ChevronLeft, ChevronRight, Github } from "lucide-react";
 import { OutlineButton } from "@/components/OutlineButton";
 import { SectionLabel } from "@/components/SectionLabel";
 import { Reveal } from "@/components/Reveal";
+import { useLanguage } from "@/context/LanguageContext";
 
-const projects = [
+const baseProjects = [
   {
     title: "Baseline",
-    description:
-      "A retainer utilization tracker for agencies and freelancers, built with Flutter and Supabase (PostgreSQL, Auth, RLS, RPC). Features offline-first usage logging, real-time multi-client dashboards, and automatic overage alerts triggered directly in Postgres.",
-    image: [
-      "baseline/baseline1.png",
-      "baseline/baseline2.png",
-    ],
+    image: ["baseline/baseline1.png", "baseline/baseline2.png"],
     tags: ["Mobile", "Dart", "Flutter", "Supabase", "Riverpod"],
     link: "",
     github: "https://github.com/fathorrosi-dev/baseline",
   },
   {
     title: "Movieverse",
-    description:
-      "A cross‑platform Flutter application to browse movies and TV shows (powered by The Movie Database), manage a personal watchlist, and authenticate users via Firebase.",
     image: ["movieverse/movieverse.png", "movieverse/movieverse1.png"],
     tags: ["Mobile", "Dart", "Flutter", "Firebase", "REST API", "BLoC"],
     link: "https://play.google.com/store/apps/details?id=com.fathorrosi.movieverse&pli=1",
@@ -28,8 +22,6 @@ const projects = [
   },
   {
     title: "Foodie Fly",
-    description:
-      "A cross-platform Flutter food-ordering demo app using Firebase (Authentication + Firestore), BLoC state management, and a clean layered architecture.",
     image: [
       "foodie_fly/foodie_fly.png",
       "foodie_fly/foodie_fly1.png",
@@ -41,20 +33,13 @@ const projects = [
   },
   {
     title: "X Clone",
-    description: "A Flutter app inspired by the Twitter/X experience.",
-    image: [
-      "x_clone/x_clone.png",
-      "x_clone/x_clone1.png",
-      "x_clone/x_clone2.png",
-    ],
+    image: ["x_clone/x_clone.png", "x_clone/x_clone1.png", "x_clone/x_clone2.png"],
     tags: ["Mobile", "Dart", "Flutter", "Firebase"],
     link: "",
     github: "https://github.com/fathorrosi-dev/x_clone",
   },
   {
     title: "Sneakers Shop",
-    description:
-      "A small Flutter demo shop app that showcases a product listing (sneakers), a cart powered by Provider, and a simple navigation flow using go_router. This project is a good starting point for learning small-scale app structure, theming, and state management in Flutter.",
     image: ["snekers_shop/snekers_shop.png"],
     tags: ["Mobile", "Dart", "Flutter"],
     link: "",
@@ -62,8 +47,6 @@ const projects = [
   },
   {
     title: "Titans Crypto",
-    description:
-      "A cross-platform Flutter app that displays popular cryptocurrencies and interactive charts. It uses CoinGecko's public API for data and demonstrates a small production-friendly architecture with dependency injection, repository pattern, and BLoC state management.",
     image: [
       "titans_crypto/titans_crypto.png",
       "titans_crypto/titans_crypto2.png",
@@ -75,8 +58,6 @@ const projects = [
   },
   {
     title: "Taskly",
-    description:
-      "Taskly is a lightweight Flutter todo app that demonstrates a clean architecture approach (data, domain, presentation) with local persistence using SQLite. It provides simple task management using BLoC/Cubit for state management and organized use-cases for business logic.",
     image: ["taskly/taskly.png"],
     tags: ["Mobile", "Dart", "Flutter", "SQLite"],
     link: "",
@@ -84,8 +65,6 @@ const projects = [
   },
   {
     title: "Notes App",
-    description:
-      "A modern, feature-rich Flutter application for creating, managing, and organizing personal notes. This app provides a clean and intuitive interface with support for both light and dark themes, local data persistence, and a smooth user experience.",
     image: ["notes_app/notes_app.png"],
     tags: ["Mobile", "Dart", "Flutter", "SQLite"],
     link: "",
@@ -93,8 +72,6 @@ const projects = [
   },
   {
     title: "Coffee Shop",
-    description:
-      "A beautiful and intuitive Flutter application for browsing, customizing, and purchasing premium coffee beverages.",
     image: ["coffe_shop/coffe_shop.png"],
     tags: ["Mobile", "Dart", "Flutter", "Provider"],
     link: "",
@@ -102,8 +79,6 @@ const projects = [
   },
   {
     title: "Slide Drawer",
-    description:
-      "Slide Drawer is a modern Flutter application that makes pet adoption easy and enjoyable. Users can browse through various types of pets (cats, dogs, parrots, and rabbits), view detailed information about each pet, and discover new companions available for adoption in their area.",
     image: ["slide_drawer/slide_drawer.png"],
     tags: ["Mobile", "Dart", "Flutter"],
     link: "",
@@ -111,8 +86,6 @@ const projects = [
   },
   {
     title: "Onboarding UI",
-    description:
-      "A professional, cross-platform onboarding UI application built with Flutter. HealthFirst provides a comprehensive healthcare app experience with a beautiful, responsive onboarding journey that introduces users to personalized health management features.",
     image: [
       "onboarding_ui/onboarding_ui.png",
       "onboarding_ui/onboarding_ui1.png",
@@ -123,8 +96,6 @@ const projects = [
   },
   {
     title: "Open Music Back-End",
-    description:
-      "A comprehensive RESTful API backend for a music streaming application built with Node.js and Hapi.js. Open Music provides robust user authentication, playlist management, song cataloging, album management with cover art support, user preferences tracking, and real-time export functionality.",
     image: ["open-music-back-end/illustration.png"],
     tags: ["Back-End", "Javascript", "Node.js"],
     link: "",
@@ -132,8 +103,6 @@ const projects = [
   },
   {
     title: "Quill",
-    description:
-      "Quill is a modern, user-friendly bullet journal and note-taking web application designed to help users document, reflect, and embrace their personal journeys in the digital age. Quill transforms the traditional bullet journaling experience into an accessible, beautifully designed web application that enables mindful living for everyone.",
     image: ["quill/quill_sc.png"],
     tags: ["Web", "HTML", "CSS"],
     link: "https://fathorrosi-dev.github.io/quill/",
@@ -141,8 +110,6 @@ const projects = [
   },
   {
     title: "Fcode",
-    description:
-      "FCODE is a modern, responsive landing page for a developer-focused email delivery platform. It showcases a professional web application designed to help developers send transactional and marketing emails reliably, ensuring messages reach inboxes instead of spam folders.",
     image: ["fcode/fcode_sc.png"],
     tags: ["Web", "HTML", "CSS"],
     link: "https://fathorrosi-dev.github.io/fcode/",
@@ -150,8 +117,6 @@ const projects = [
   },
   {
     title: "Sushiman",
-    description:
-      "Sushiman is a modern, responsive web application designed to showcase authentic Japanese cuisine and beverages. It serves as a digital storefront for a Japanese food delivery and dining experience, featuring a beautiful interface built with contemporary web technologies.",
     image: ["sushiman/sushiman_sc.png"],
     tags: ["Web", "HTML", "CSS"],
     link: "https://fathorrosi-dev.github.io/sushiman/",
@@ -159,7 +124,66 @@ const projects = [
   },
 ];
 
+const descriptions = {
+  en: [
+    "A retainer utilization tracker for agencies and freelancers, built with Flutter and Supabase (PostgreSQL, Auth, RLS, RPC). Features offline-first usage logging, real-time multi-client dashboards, and automatic overage alerts triggered directly in Postgres.",
+    "A cross-platform Flutter application to browse movies and TV shows (powered by The Movie Database), manage a personal watchlist, and authenticate users via Firebase.",
+    "A cross-platform Flutter food-ordering demo app using Firebase (Authentication + Firestore), BLoC state management, and a clean layered architecture.",
+    "A Flutter app inspired by the Twitter/X experience.",
+    "A small Flutter demo shop app that showcases a product listing (sneakers), a cart powered by Provider, and a simple navigation flow using go_router. This project is a good starting point for learning small-scale app structure, theming, and state management in Flutter.",
+    "A cross-platform Flutter app that displays popular cryptocurrencies and interactive charts. It uses CoinGecko's public API for data and demonstrates a small production-friendly architecture with dependency injection, repository pattern, and BLoC state management.",
+    "Taskly is a lightweight Flutter todo app that demonstrates a clean architecture approach (data, domain, presentation) with local persistence using SQLite. It provides simple task management using BLoC/Cubit for state management and organized use-cases for business logic.",
+    "A modern, feature-rich Flutter application for creating, managing, and organizing personal notes. This app provides a clean and intuitive interface with support for both light and dark themes, local data persistence, and a smooth user experience.",
+    "A beautiful and intuitive Flutter application for browsing, customizing, and purchasing premium coffee beverages.",
+    "Slide Drawer is a modern Flutter application that makes pet adoption easy and enjoyable. Users can browse through various types of pets (cats, dogs, parrots, and rabbits), view detailed information about each pet, and discover new companions available for adoption in their area.",
+    "A professional, cross-platform onboarding UI application built with Flutter. HealthFirst provides a comprehensive healthcare app experience with a beautiful, responsive onboarding journey that introduces users to personalized health management features.",
+    "A comprehensive RESTful API backend for a music streaming application built with Node.js and Hapi.js. Open Music provides robust user authentication, playlist management, song cataloging, album management with cover art support, user preferences tracking, and real-time export functionality.",
+    "Quill is a modern, user-friendly bullet journal and note-taking web application designed to help users document, reflect, and embrace their personal journeys in the digital age. Quill transforms the traditional bullet journaling experience into an accessible, beautifully designed web application that enables mindful living for everyone.",
+    "FCODE is a modern, responsive landing page for a developer-focused email delivery platform. It showcases a professional web application designed to help developers send transactional and marketing emails reliably, ensuring messages reach inboxes instead of spam folders.",
+    "Sushiman is a modern, responsive web application designed to showcase authentic Japanese cuisine and beverages. It serves as a digital storefront for a Japanese food delivery and dining experience, featuring a beautiful interface built with contemporary web technologies.",
+  ],
+  id: [
+    "Retainer utilization tracker untuk agency dan freelancer, dibangun dengan Flutter dan Supabase (PostgreSQL, Auth, RLS, RPC). Punya fitur offline-first usage logging, dashboard multi-client real-time, dan overage alert otomatis yang dipicu langsung dari Postgres.",
+    "Aplikasi Flutter cross-platform untuk menjelajahi film dan serial TV (didukung oleh The Movie Database), mengelola watchlist pribadi, dan autentikasi pengguna lewat Firebase.",
+    "Demo aplikasi pemesanan makanan Flutter cross-platform menggunakan Firebase (Authentication + Firestore), state management BLoC, dan layered architecture yang rapi.",
+    "Aplikasi Flutter yang terinspirasi dari pengalaman Twitter/X.",
+    "Demo aplikasi toko Flutter berskala kecil yang menampilkan listing produk (sneakers), keranjang belanja dengan Provider, dan alur navigasi sederhana menggunakan go_router. Proyek ini jadi titik awal yang bagus untuk belajar struktur aplikasi skala kecil, theming, dan state management di Flutter.",
+    "Aplikasi Flutter cross-platform yang menampilkan cryptocurrency populer dan chart interaktif. Menggunakan public API dari CoinGecko untuk data, dan menunjukkan arsitektur berskala kecil yang production-friendly dengan dependency injection, repository pattern, dan state management BLoC.",
+    "Taskly adalah aplikasi todo Flutter ringan yang menunjukkan pendekatan Clean Architecture (data, domain, presentation) dengan local persistence menggunakan SQLite. Menyediakan task management sederhana dengan BLoC/Cubit untuk state management dan use-case yang terorganisir untuk business logic.",
+    "Aplikasi Flutter modern dengan fitur lengkap untuk membuat, mengelola, dan mengatur catatan pribadi. Aplikasi ini punya interface yang bersih dan intuitif, mendukung tema light dan dark, local data persistence, dan pengalaman pengguna yang mulus.",
+    "Aplikasi Flutter yang menarik dan intuitif untuk menjelajahi, menyesuaikan, dan membeli minuman kopi premium.",
+    "Slide Drawer adalah aplikasi Flutter modern yang membuat adopsi hewan peliharaan jadi mudah dan menyenangkan. Pengguna bisa menjelajahi berbagai jenis hewan (kucing, anjing, burung beo, dan kelinci), melihat detail tiap hewan, dan menemukan teman baru yang siap diadopsi di area mereka.",
+    "Aplikasi onboarding UI cross-platform yang profesional, dibangun dengan Flutter. HealthFirst menghadirkan pengalaman aplikasi healthcare yang lengkap dengan alur onboarding yang menarik dan responsif, memperkenalkan pengguna pada fitur pengelolaan kesehatan yang personal.",
+    "Backend RESTful API yang lengkap untuk aplikasi music streaming, dibangun dengan Node.js dan Hapi.js. Open Music menyediakan autentikasi pengguna yang kuat, playlist management, katalog lagu, album management dengan dukungan cover art, pelacakan preferensi pengguna, dan fungsi export real-time.",
+    "Quill adalah aplikasi web bullet journal dan pencatatan modern yang mudah digunakan, dirancang untuk membantu pengguna mendokumentasikan dan merefleksikan perjalanan pribadi mereka di era digital. Quill mengubah pengalaman bullet journaling tradisional menjadi aplikasi web yang mudah diakses dan dirancang dengan baik untuk mendukung mindful living bagi semua orang.",
+    "FCODE adalah landing page modern dan responsif untuk platform pengiriman email yang ditujukan bagi developer. Menampilkan aplikasi web profesional yang dirancang untuk membantu developer mengirim email transaksional dan marketing secara andal, memastikan pesan sampai ke inbox, bukan folder spam.",
+    "Sushiman adalah aplikasi web modern dan responsif yang dirancang untuk menampilkan kuliner dan minuman Jepang otentik. Berfungsi sebagai etalase digital untuk pengalaman pesan-antar dan dine-in makanan Jepang, dengan interface menarik yang dibangun menggunakan teknologi web modern.",
+  ],
+};
+
+const copy = {
+  en: {
+    headline: "Projects that make an impact.",
+    subtitle:
+      "A selection of my recent work, from mobile apps published on Google Play to backend services and web builds.",
+    viewAll: "View all projects",
+  },
+  id: {
+    headline: "Proyek yang punya dampak nyata.",
+    subtitle:
+      "Sebagian dari pekerjaan terbaru saya, mulai dari aplikasi mobile yang dipublikasikan di Google Play sampai backend service dan web.",
+    viewAll: "Lihat semua proyek",
+  },
+};
+
 export const Projects = () => {
+  const { language } = useLanguage();
+  const t = copy[language];
+  const projects = baseProjects.map((project, idx) => ({
+    ...project,
+    description: descriptions[language][idx],
+  }));
+
   const [indexes, setIndexes] = useState(() => projects.map(() => 0));
 
   const handlePrev = (i) => {
@@ -200,13 +224,12 @@ export const Projects = () => {
         </Reveal>
         <Reveal delay={80}>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Projects that make an impact.
+            {t.headline}
           </h2>
         </Reveal>
         <Reveal delay={140}>
           <p className="mt-4 max-w-2xl text-muted-foreground">
-            A selection of my recent work, from mobile apps published on Google
-            Play to backend services and web builds.
+            {t.subtitle}
           </p>
         </Reveal>
 
@@ -327,7 +350,7 @@ export const Projects = () => {
 
         <Reveal delay={200} className="mt-12 flex justify-center">
           <OutlineButton href="https://github.com/fathorrosi-dev?tab=repositories">
-            View all projects
+            {t.viewAll}
             <ArrowUpRight className="h-4 w-4" />
           </OutlineButton>
         </Reveal>

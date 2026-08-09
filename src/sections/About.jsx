@@ -1,33 +1,7 @@
 import { Code2, Lightbulb, Rocket, Users } from "lucide-react";
 import { SectionLabel } from "@/components/SectionLabel";
 import { Reveal } from "@/components/Reveal";
-
-const highlights = [
-  {
-    icon: Code2,
-    title: "Clean code",
-    description:
-      "Writing structured, readable, and maintainable Flutter applications.",
-  },
-  {
-    icon: Rocket,
-    title: "Performance",
-    description:
-      "Building responsive UI and efficient data flows for smooth experiences.",
-  },
-  {
-    icon: Users,
-    title: "Collaboration",
-    description:
-      "Comfortable working with mentors, teams, and product requirements.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Continuous learning",
-    description:
-      "Actively improving through projects, courses, and experimentation.",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 const stack = [
   "Dart",
@@ -41,7 +15,87 @@ const stack = [
   "GitHub",
 ];
 
+const copy = {
+  en: {
+    headline: "Crafting mobile solutions, one feature at a time.",
+    paragraphs: [
+      "I'm a mobile app developer specializing in Flutter and Dart, with hands-on experience shipping real applications to Android. My work leans on clean architecture, maintainable code, and predictable state management with BLoC — turning product requirements into mobile experiences people can rely on.",
+      "Alongside mobile work, I build backend services with Node.js and Hapi.js: REST APIs, authentication, relational databases, and caching layers that support the apps in front of them.",
+      "I keep improving through hands-on projects and structured learning, working toward becoming a stronger Flutter engineer one release at a time.",
+    ],
+    quote:
+      '"My goal is to build applications that are reliable, easy to maintain, and genuinely useful — not just demos."',
+    toolsLabel: "Tools & technologies",
+    highlights: [
+      {
+        icon: Code2,
+        title: "Clean code",
+        description:
+          "Writing structured, readable, and maintainable Flutter applications.",
+      },
+      {
+        icon: Rocket,
+        title: "Performance",
+        description:
+          "Building responsive UI and efficient data flows for smooth experiences.",
+      },
+      {
+        icon: Users,
+        title: "Collaboration",
+        description:
+          "Comfortable working with mentors, teams, and product requirements.",
+      },
+      {
+        icon: Lightbulb,
+        title: "Continuous learning",
+        description:
+          "Actively improving through projects, courses, and experimentation.",
+      },
+    ],
+  },
+  id: {
+    headline: "Membangun solusi mobile, satu fitur pada satu waktu.",
+    paragraphs: [
+      "Saya mobile app developer yang fokus di Flutter dan Dart, dengan pengalaman langsung merilis aplikasi nyata ke Android. Pekerjaan saya mengandalkan Clean Architecture, kode yang mudah dirawat, dan state management yang terstruktur dengan BLoC, mengubah kebutuhan produk menjadi pengalaman mobile yang bisa diandalkan.",
+      "Selain mobile, saya juga membangun backend service dengan Node.js dan Hapi.js: REST API, autentikasi, relational database, dan caching layer yang mendukung aplikasi di depannya.",
+      "Saya terus berkembang lewat proyek langsung dan pembelajaran terstruktur, menuju jadi Flutter engineer yang lebih matang di setiap rilis.",
+    ],
+    quote:
+      '"Tujuan saya adalah membangun aplikasi yang andal, mudah dirawat, dan benar-benar berguna, bukan sekadar demo."',
+    toolsLabel: "Tools & teknologi",
+    highlights: [
+      {
+        icon: Code2,
+        title: "Kode bersih",
+        description:
+          "Menulis aplikasi Flutter yang terstruktur, mudah dibaca, dan mudah dirawat.",
+      },
+      {
+        icon: Rocket,
+        title: "Performa",
+        description:
+          "Membangun UI yang responsif dan alur data yang efisien untuk pengalaman yang mulus.",
+      },
+      {
+        icon: Users,
+        title: "Kolaborasi",
+        description:
+          "Terbiasa bekerja dengan mentor, tim, dan kebutuhan produk.",
+      },
+      {
+        icon: Lightbulb,
+        title: "Belajar berkelanjutan",
+        description:
+          "Terus berkembang lewat proyek, kursus, dan eksperimen.",
+      },
+    ],
+  },
+};
+
 export const About = () => {
+  const { language } = useLanguage();
+  const t = copy[language];
+
   return (
     <section id="about" className="py-24 md:py-32">
       <div className="container mx-auto px-6">
@@ -54,38 +108,21 @@ export const About = () => {
 
             <Reveal delay={80}>
               <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                Crafting mobile solutions, one feature at a time.
+                {t.headline}
               </h2>
             </Reveal>
 
             <Reveal delay={140}>
               <div className="mt-6 space-y-4 leading-relaxed text-muted-foreground">
-                <p>
-                  I'm a mobile app developer specializing in Flutter and Dart,
-                  with hands-on experience shipping real applications to
-                  Android. My work leans on clean architecture, maintainable
-                  code, and predictable state management with BLoC — turning
-                  product requirements into mobile experiences people can
-                  rely on.
-                </p>
-                <p>
-                  Alongside mobile work, I build backend services with
-                  Node.js and Hapi.js: REST APIs, authentication, relational
-                  databases, and caching layers that support the apps in
-                  front of them.
-                </p>
-                <p>
-                  I keep improving through hands-on projects and structured
-                  learning, working toward becoming a stronger Flutter
-                  engineer one release at a time.
-                </p>
+                {t.paragraphs.map((paragraph, idx) => (
+                  <p key={idx}>{paragraph}</p>
+                ))}
               </div>
             </Reveal>
 
             <Reveal delay={200}>
               <blockquote className="mt-8 border-l-2 border-primary pl-5 text-lg font-medium italic text-foreground">
-                "My goal is to build applications that are reliable, easy to
-                maintain, and genuinely useful — not just demos."
+                {t.quote}
               </blockquote>
             </Reveal>
           </div>
@@ -94,7 +131,7 @@ export const About = () => {
           <div>
             <Reveal>
               <div className="grid gap-6 sm:grid-cols-2">
-                {highlights.map((item) => (
+                {t.highlights.map((item) => (
                   <div
                     key={item.title}
                     className="rounded-xl border border-border bg-surface p-6"
@@ -114,7 +151,7 @@ export const About = () => {
             <Reveal delay={120}>
               <div className="mt-6 rounded-xl border border-border bg-surface p-6">
                 <h3 className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
-                  Tools &amp; technologies
+                  {t.toolsLabel}
                 </h3>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {stack.map((item) => (
